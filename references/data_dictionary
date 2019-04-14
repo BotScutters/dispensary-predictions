@@ -1,0 +1,63 @@
+Modelling Mary Jane
+==============
+
+***Using machine earning to reveal insights and predict performance of cannabis dispensaries***
+
+**Author:** *Scott Butters*
+
+# Data Dictionary
+
+The data for this project is derived from several sources:
+
+## Dispensary profiles from [Leafly](www.leafly.com)
+
+Leafly is an information aggregator for cannabis. They maintain a profile for most of the dispensaries in the state. As part of my dataset, I've scraped the following features from the Leafly website for each dispensary for which it was available. Present data should be viewed with a healthy skepticism and missing data should not be interpreted as zero/False so much as uncertain.
+
+| Feature                | Description                                                  | Type           |
+| ---------------------- | ------------------------------------------------------------ | -------------- |
+| name                   | Name of the dispensary                                       | String         |
+| address1               | Primary street address                                       | String         |
+| address2               | Additional address information                               | String         |
+| city                   | City dispensary is located in                                | String         |
+| formattedShortLocation | Location formatted as City, ST                               | String         |
+| location               | Latitude and longitude coordinates of dispensary             | Dictionary     |
+| phone                  | Phone number of dispensary                                   | String         |
+| slug                   | URL suffix for dispensary profile                            | String         |
+| numberOfReviews        | How many user reviews the dispensary has received at time of scraping | Integer        |
+| starRating             | Average rating from user reviews (out of 5)                  | Float          |
+| tier                   | Numerical classifier of license type                         | Int            |
+| accessories            | How many products they carry under the description "accessories" | Integer        |
+| all products           | How many total products Leafly is aware they stock           | Integer        |
+| cartridges             | How many products they carry under the description "cartridges" | Integer        |
+| concentrates           | How many products they carry under the description "concentrates" | Integer        |
+| edibles                | How many products they carry under the description "edibles" | Integer        |
+| flower                 | How many products they carry under the description "flower"  | Integer        |
+| other                  | How many products they carry under the description "other"   | Integer        |
+| pre-rolls              | How many products they carry under the description "pre-rolls" | Integer        |
+| seeds                  | How many products they carry under the description "seeds"   | Integer        |
+| topicals               | How many products they carry under the description "topicals" | Integer        |
+| ada accessible         | Whether or not the dispensary is ADA accessible              | Boolean        |
+| atm                    | Whether or not the dispensary has an ATM onsite              | Boolean        |
+| debit cards accepted   | Whether or not the dispensary accepts debit cards            | Boolean        |
+| medical                | Whether or not the dispensary is licensed to distribute medical marijuana | Boolean        |
+| recreational           | Whether or not the dispensary is licensed to distribute recreational marijuana | Boolean        |
+| storefront             | Whether or not the dispensary operates out of a physical storefront | Boolean        |
+| ufcw discount          | Whether or not the dispensary offers a discount to members of the UFCW | Boolean        |
+| veteran discount       | Whether or not the dispensary offers a discount to veterans  | Boolean        |
+| lastMenuUpdate         | Date and time inventory data was last updated                | Datetime stamp |
+
+The combination of these features gives us a profile of each dispensary that allow us to draw insights from our model into what makes for a successful dispensary.
+
+## Demographics from [WA HomeTownLocator](https://washington.hometownlocator.com/)
+
+Of course, having the best inventory, friendliest staff and prettiest building in the state doesn't amount to anything if a dispensary is in the middle of nowhere. This is where demographic data comes in. WA HomeTownLocator maintains a database of demographic statistics for nearly every zip code in the state of Washington. The data is produced by Esri Demographics, and updated 4 times per year using data from the federal census, IRS, USPS, as well as local data sources and more. From this website I scraped data likely to be predictive of a local market such as:
+
+* Population density
+* Diversity
+* Average income
+
+These data give our model an image of what a dispensary's customer base is like, allowing us to characterize what makes for a good location to establish a dispensary.
+
+## [Washington State Liquor and Cannabis Board (WSLCB)](https://lcb.wa.gov/)
+
+Lastly, all that data would get us nowhere if we didn't have any target data to train our models on. That's where the WSLCB comes in. The WSLCB maintains data on every dispensary in the state, including monthly reports of revenue (which is what our model is predicting). Their data is scattered across a couple of different outlets, but for this project I used spreadsheets downloadable from [this obsure page](https://lcb.wa.gov/records/frequently-requested-lists) to get sales data dating back to November 2017. Because the only identifying information in that spreadsheet is the license number of the dispensary, I also downloaded a spreadsheet listing metadata for every entity that has applied for a Marijuana license, which I then joined with the sales data in order to link it up with data scraped from other resources.

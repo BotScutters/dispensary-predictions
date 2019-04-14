@@ -14,7 +14,7 @@ As my MVP, I'd like to train a linear regression model to predict the monthly re
 
 ### Data Sources
 
-My data set will be derived from a number of sources, including leafly.com, 502data.com, and census data. From leafly I plan to scrape data specific to dispensaries such as inventory, user ratings and reviews, medical/recreational classification, and location coordinates. I also intend to gather demographic data at the zip code level for each dispensary. For my target data I've downloaded monthly sales data from the Washington State Liquor and Cannabis Board (WCLSB) for each registered dispensary extending from 11/2017-1/2019. 
+My data set will be derived from a number of sources, including leafly.com, 502data.com, and census data. From [leafly](www.leafly.com) I plan to scrape data specific to dispensaries such as inventory, user ratings and reviews, medical/recreational classification, and location coordinates. I also intend to gather demographic data at the zip code level for each dispensary. For my target data I've downloaded monthly sales data from the Washington State Liquor and Cannabis Board (WSLCB) for each registered dispensary extending from 11/2017-1/2019. 
 
 ### Features
 
